@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from peewee import DoesNotExist
 from .models import Image, Category, Location
 
 
@@ -10,7 +11,7 @@ def index(request):
     return render(request, 'index.html', {'images': images, "categories": categories})
 
 
-def singleimage(request, image_id):
+def single_image(request, image_id):
     try:
         image = Image.objects.get(id=image_id)
     except DoesNotExist:
@@ -18,7 +19,7 @@ def singleimage(request, image_id):
     return render(request, "location.html", {"image": image})
 
 
-def imagesbylocation(request, ):
+def images_by_location(request, ):
     if 'images' in request.GET and request.GET["images"]:
         area = request.GET.get("images")
         searched_images = Image.collectimagelocation(area)
@@ -31,7 +32,7 @@ def imagesbylocation(request, ):
         return render(request, 'location.html', {"message": message})
 
 
-def imagesbycategory(request, ):
+def images_by_category(request, ):
     if 'images' in request.GET and request.GET["images"]:
         cat = request.GET.get("images")
         searched_images = Image.collectimagecategory(cat)

@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url('^$',views.index,name='index'),
-    url('^image',views.singleimage,name='singleimage'),
-    url('^location',views.imagesbylocation,name='location'),
-    url('^category', views.imagesbycategory, name='category'),
+    url('^image/',views.single_image,name='single_image'),
+    url('^location/',views.images_by_location,name='location'),
+    url('^category/', views.images_by_category, name='category'),
 
 ]
 # if settings.DEBUG:
